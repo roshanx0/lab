@@ -1,3 +1,14 @@
+/*
+SERVER:                          CLIENT:
+1. Create socket                 1. Create socket
+2. Bind to port                  2. Enter port number
+3. Listen for connections        3. Connect to server (127.0.0.1)
+4. Accept client                 4. Enter message
+5. Read message from client      5. Send message
+6. Reverse the string            6. Read reversed message
+7. Send reversed back            7. Print result
+8. Close sockets                 8. Close socket
+*/
 #include <stdio.h>
 #include <string.h>
 #include <sys/socket.h>
