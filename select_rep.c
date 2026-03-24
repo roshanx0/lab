@@ -1,25 +1,12 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 typedef struct {
     int seq_num;
     bool acked;
     bool sent;
 } Packet;
-
-/* Function to send packet */
-void send_packet(Packet *packet) {
-    printf("Sending packet with sequence number %d\n", packet->seq_num);
-    sleep(1);
-}
-
-/* Function to receive acknowledgement */
-void receive_ack(Packet *packet) {
-    printf("Received acknowledgement for packet with sequence number %d\n", packet->seq_num);
-    packet->acked = true;
-}
 
 int main() {
     int window_size, buffer_size;
@@ -32,7 +19,6 @@ int main() {
 
     Packet packets[buffer_size];
 
-    /* Initialize packets */
     for (int i = 0; i < buffer_size; i++) {
         packets[i].seq_num = i;
         packets[i].acked = false;
@@ -47,7 +33,7 @@ int main() {
         /* Send packets within window */
         for (int i = base; i < base + window_size && i < buffer_size; i++) {
             if (!packets[i].sent) {
-                send_packet(&packets[i]);
+                printf("Sending packet with sequence number %d\n", i);
                 packets[i].sent = true;
                 next_seq_num++;
             }
@@ -59,9 +45,10 @@ int main() {
                 double random_number = (double)rand() / RAND_MAX;
 
                 if (random_number > 0.2) {
-                    receive_ack(&packets[i]);
+                    printf("Received acknowledgement for packet %d\n", i);
+                    packets[i].acked = true;  // ← directly set here
                 } else {
-                    printf("Acknowledgement for packet %d lost\n", packets[i].seq_num);
+                    printf("Acknowledgement for packet %d lost\n", i);
                 }
             }
         }
