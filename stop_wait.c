@@ -1,3 +1,22 @@
+/*
+1. Start
+2. Input number of frames
+3. For each frame:
+   a) Send the frame
+   b) Generate random number
+   c) If random is EVEN (ACK lost):
+        - Wait 1, 2, 3 seconds (timeout simulation)
+        - Print "Missing ACK"
+        - Resend frame
+        - Receive ACK, print ACK number
+   d) If random is ODD (ACK received):
+        - Directly receive ACK
+        - Print ACK number
+   e) Move to next frame
+4. Print "End of Stop and Wait Protocol"
+5. Stop
+    
+    */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
