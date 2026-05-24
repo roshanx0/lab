@@ -1,3 +1,21 @@
+/*
+Start
+Create UDP socket using socket()
+Fill server address structure:
+AF_INET
+IP address
+Port number
+Bind socket to server address using bind()
+Wait for message from client using recvfrom()
+Receive string from client
+Reverse the string
+Send reversed string back using sendto()
+Repeat steps 5–8 continuously (optional using while(1))
+Close socket
+Stop
+
+*/
+
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <string.h>
