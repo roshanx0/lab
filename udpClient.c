@@ -25,24 +25,24 @@ Stop
 int main() {
     int sfd;
     char buf[2048];
-    struct sockaddr_in serv;
-    socklen_t len = sizeof(serv);
+    struct sockaddr_in server;
+    socklen_t len = sizeof(server);
 
     sfd = socket(AF_INET, SOCK_DGRAM, 0);
 
-    memset(&serv, 0, sizeof(serv));
-    serv.sin_family = AF_INET;
-    serv.sin_addr.s_addr = inet_addr("127.0.0.1");
-    serv.sin_port = htons(PORT);
+    memset(&server, 0, sizeof(server));
+    server.sin_family = AF_INET;
+    server.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server.sin_port = htons(PORT);
 
     printf("Enter a string: ");
     scanf("%[^\n]%*c", buf);
 
     // Send string (including null terminator to keep it clean)
-    sendto(sfd, buf, strlen(buf) + 1, 0, (struct sockaddr *)&serv, len);
+    sendto(sfd, buf, strlen(buf) + 1, 0, (struct sockaddr *)&server, len);
 
     // Receive reversed string back
-    recvfrom(sfd, buf, sizeof(buf), 0, (struct sockaddr *)&serv, &len);
+    recvfrom(sfd, buf, sizeof(buf), 0, (struct sockaddr *)&server, &len);
 
     printf("Server replied: %s\n", buf);
 
