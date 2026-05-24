@@ -1,3 +1,29 @@
+/*
+Start
+Read:
+Window size
+Buffer size
+Create packet structure containing:
+Sequence number
+Acknowledgement status
+Initialize all packets:
+Assign sequence numbers
+Set ACK status as false
+Set:
+base = 0
+Repeat until all packets are acknowledged:
+Send packets within the current window
+For each packet:
+Generate random probability
+If ACK received:
+Mark packet as acknowledged
+Else:
+Display ACK lost
+Slide the window forward for consecutively acknowledged packets
+Display successful transmission message
+Stop
+
+*/
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
